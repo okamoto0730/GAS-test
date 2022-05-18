@@ -26,3 +26,16 @@ var sheet_id = "1PDodWmn51e1S39msZEveJBydCdHBYjtRzu5acn9L0Ow";  // SpreadSheetID
 var sheet_name = "出力結果";
 
 }
+
+
+//　下記のやり方もあるっぽい
+function myFunction() { //https://skill-upupup-future.com/?p=1574
+  const setVlookupFunction = () => {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // ブック取得
+  const TARGET_SHEET_NAME = '出力結果'; // 埋め込み対象のシート名
+  const REF_SHEET_NAME = '原本'; // VLOOKUP参照先シート名
+  const sheet = spreadsheet.getSheetByName(TARGET_SHEET_NAME);
+  const spreadsheetId = spreadsheet.getId('1PDodWmn51e1S39msZEveJBydCdHBYjtRzu5acn9L0Ow'); // スプレッドシート一意のID
+  sheet.getRange(2,1).setFormulaR1C1(`=VLOOKUP(RC[-1],TARGET_SHEET_NAME("${spreadsheetId}","${REF_SHEET_NAME}!$A$2:$D$34"),2,FALSE)`);
+};
+}
